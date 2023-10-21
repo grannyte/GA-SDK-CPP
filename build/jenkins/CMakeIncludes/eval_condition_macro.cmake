@@ -1,9 +1,9 @@
 # Evaluates condition and sets variable
 
 MACRO(EVAL_CONDITION name)
-   IF(${ARGN})
+   IF(ARGN)
      SET(${name} 1)
-   ELSE(${ARGN})
+   ELSE(ARGN)
      SET(${name} 0)
-   ENDIF(${ARGN})
+   ENDIF(ARGN)
 ENDMACRO(EVAL_CONDITION)

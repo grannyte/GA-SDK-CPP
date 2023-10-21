@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8E95A2AB-C150-3B92-BD2A-B16C5EC52F72}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>GameAnalytics</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\GA-SDK-CPP\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">GameAnalytics.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">GameAnalytics</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\GA-SDK-CPP\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">GameAnalytics.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">GameAnalytics</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(SolutionDir)\GA-SDK-CPP\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">GameAnalytics.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">GameAnalytics</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(SolutionDir)$(Platform)\release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">GameAnalytics.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">GameAnalytics</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;DEBUG;_DEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;DEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR="RelWithDebInfo";GUID_WINDOWS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid;$(SolutionDir)\GA-SDK-CPP\source\dependencies\rapidjson;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace;$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker;$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log;$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite;$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto;$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz;$(SolutionDir)\GA-SDK-CPP\source\dependencies\curl\include;$(SolutionDir)\GA-SDK-CPP\source\gameanalytics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\crossguid\guid.cpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto\aes.cpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto\hmac_sha2.c" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto\md5.cpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\crypto\sha2.c" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\miniz\miniz.c" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite\sqlite3.c" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite\sqlite3.h" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\sqlite\sqlite3ext.h" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace\stacktrace\call_stack.hpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace\stacktrace\call_stack_gcc.cpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace\stacktrace\call_stack_msvc.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\stacktrace\stacktrace\stack_exception.hpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\stackwalker\StackWalker.cpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log\zf_log.c" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\dependencies\zf_log\zf_log.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GADevice.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GADevice.h" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GADeviceOSX.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAEvents.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAEvents.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAHTTPApi.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAHTTPApi.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAHTTPApiUWP.cpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GALogger.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GALogger.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAState.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAState.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAStore.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAStore.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAThreading.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAThreading.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAThreadingTizen.cpp" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAUncaughtExceptionHandler.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAUncaughtExceptionHandler.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAUtilities.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAUtilities.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAValidator.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GAValidator.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GameAnalytics.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GameAnalytics.h" />
+    <ClCompile Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GameAnalyticsExtern.cpp" />
+    <ClInclude Include="$(SolutionDir)\GA-SDK-CPP\source\gameanalytics\GameAnalyticsExtern.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -18,286 +18,325 @@
 #include <cstring>
 #include <cstdlib>
 #endif
+#include <StackWalker.cpp>
 
 namespace gameanalytics
 {
-    namespace errorreporter
-    {
-        std::terminate_handler GAUncaughtExceptionHandler::previousTerminateHandler = NULL;
+	namespace errorreporter
+	{
+		std::terminate_handler GAUncaughtExceptionHandler::previousTerminateHandler = NULL;
 #if defined(_WIN32)
-        void (*GAUncaughtExceptionHandler::old_state_ill) (int) = NULL;
-        void (*GAUncaughtExceptionHandler::old_state_abrt) (int) = NULL;
-        void (*GAUncaughtExceptionHandler::old_state_fpe) (int) = NULL;
-        void (*GAUncaughtExceptionHandler::old_state_segv) (int) = NULL;
+		void (*GAUncaughtExceptionHandler::old_state_ill) (int) = NULL;
+		void (*GAUncaughtExceptionHandler::old_state_abrt) (int) = NULL;
+		void (*GAUncaughtExceptionHandler::old_state_fpe) (int) = NULL;
+		void (*GAUncaughtExceptionHandler::old_state_segv) (int) = NULL;
 #else
-        struct sigaction GAUncaughtExceptionHandler::prevSigAction;
+		struct sigaction GAUncaughtExceptionHandler::prevSigAction;
 #endif
-        int GAUncaughtExceptionHandler::errorCount = 0;
-        int GAUncaughtExceptionHandler::MAX_ERROR_TYPE_COUNT = 5;
+		int GAUncaughtExceptionHandler::errorCount = 0;
+		int GAUncaughtExceptionHandler::MAX_ERROR_TYPE_COUNT = 5;
 
 #if defined(_WIN32)
-        void GAUncaughtExceptionHandler::signalHandler(int sig)
-        {
-            if(state::GAState::useErrorReporting())
-            {
-                if(errorCount <= MAX_ERROR_TYPE_COUNT)
-                {
-                    stacktrace::call_stack st;
-                    size_t totalSize = 0;
-                    totalSize += formatSize("Uncaught Signal (%d)\n", sig);
-                    totalSize += strlen("Stack trace:\n");
-                    totalSize += st.to_string_size() + strlen("\n");
-                    char* buffer = new char[totalSize + 1];
-                    buffer[0] = 0;
 
-                    formatConcat(buffer, "Uncaught Signal (%d)\n", sig);
-                    strcat(buffer, "Stack trace:\n");
-                    st.to_string(buffer);
-                    strcat(buffer, "\n");
 
-                    errorCount = errorCount + 1;
-                    events::GAEvents::addErrorEvent(EGAErrorSeverity::Critical, buffer, {}, false);
-                    events::GAEvents::processEvents("error", false);
-                    delete[] buffer;
-                }
-            }
+		void GAUncaughtExceptionHandler::signalHandler(int sig)
+		{
+			if (state::GAState::useErrorReporting())
+			{
+				if (errorCount <= MAX_ERROR_TYPE_COUNT)
+				{
+					stacktrace::call_stack st;
+					size_t totalSize = 0;
+					totalSize += formatSize("Uncaught Signal (%d)\n", sig);
+					totalSize += strlen("Stack trace:\n");
+					totalSize += st.to_string_size() + strlen("\n");
+					char* buffer = new char[totalSize + 1];
+					buffer[0] = 0;
 
-            if(sig == SIGILL && old_state_ill != NULL)
-            {
-                old_state_ill(sig);
-            }
-            else if(sig == SIGABRT && old_state_abrt != NULL)
-            {
-                old_state_abrt(sig);
-            }
-            else if(sig == SIGFPE && old_state_fpe != NULL)
-            {
-                old_state_fpe(sig);
-            }
-            else if(sig == SIGSEGV && old_state_segv != NULL)
-            {
-                old_state_segv(sig);
-            }
-        }
+					formatConcat(buffer, "Uncaught Signal (%d)\n", sig);
+					strcat(buffer, "Stack trace:\n");
+					st.to_string(buffer);
+					strcat(buffer, "\n");
 
-        void GAUncaughtExceptionHandler::setupUncaughtSignals()
-        {
-            signal(SIGILL, signalHandler);
-            signal(SIGABRT, signalHandler);
-            signal(SIGFPE, signalHandler);
-            signal(SIGSEGV, signalHandler);
-        }
+					errorCount = errorCount + 1;
+					events::GAEvents::addErrorEvent(EGAErrorSeverity::Critical, buffer, {}, false);
+					events::GAEvents::processEvents("error", false);
+					delete[] buffer;
+				}
+			}
+
+			if (sig == SIGILL && old_state_ill != NULL)
+			{
+				old_state_ill(sig);
+			}
+			else if (sig == SIGABRT && old_state_abrt != NULL)
+			{
+				old_state_abrt(sig);
+			}
+			else if (sig == SIGFPE && old_state_fpe != NULL)
+			{
+				old_state_fpe(sig);
+			}
+			else if (sig == SIGSEGV && old_state_segv != NULL)
+			{
+				old_state_segv(sig);
+			}
+		}
+
+		void GAUncaughtExceptionHandler::setupUncaughtSignals()
+		{
+			SetUnhandledExceptionFilter(TopLevelExceptionHandler);
+			signal(SIGILL, signalHandler);
+			signal(SIGABRT, signalHandler);
+			signal(SIGFPE, signalHandler);
+			signal(SIGSEGV, signalHandler);
+		}
 #else
-        void GAUncaughtExceptionHandler::setupUncaughtSignals()
-        {
-            struct sigaction mySigAction;
-            mySigAction.sa_sigaction = signalHandler;
-            mySigAction.sa_flags = SA_SIGINFO;
+		void GAUncaughtExceptionHandler::setupUncaughtSignals()
+		{
+			struct sigaction mySigAction;
+			mySigAction.sa_sigaction = signalHandler;
+			mySigAction.sa_flags = SA_SIGINFO;
 
-            sigemptyset(&mySigAction.sa_mask);
-            sigaction(SIGQUIT, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGQUIT, &mySigAction, NULL);
-            }
-            sigaction(SIGILL, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGILL, &mySigAction, NULL);
-            }
-            sigaction(SIGTRAP, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGTRAP, &mySigAction, NULL);
-            }
-            sigaction(SIGABRT, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGABRT, &mySigAction, NULL);
-            }
+			sigemptyset(&mySigAction.sa_mask);
+			sigaction(SIGQUIT, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGQUIT, &mySigAction, NULL);
+			}
+			sigaction(SIGILL, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGILL, &mySigAction, NULL);
+			}
+			sigaction(SIGTRAP, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGTRAP, &mySigAction, NULL);
+			}
+			sigaction(SIGABRT, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGABRT, &mySigAction, NULL);
+			}
 #if !USE_LINUX
-            sigaction(SIGEMT, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGEMT, &mySigAction, NULL);
-            }
+			sigaction(SIGEMT, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGEMT, &mySigAction, NULL);
+			}
 #endif
-            sigaction(SIGFPE, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGFPE, &mySigAction, NULL);
-            }
-            sigaction(SIGBUS, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGBUS, &mySigAction, NULL);
-            }
-            sigaction(SIGSEGV, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGSEGV, &mySigAction, NULL);
-            }
-            sigaction(SIGSYS, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGSYS, &mySigAction, NULL);
-            }
-            sigaction(SIGPIPE, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGPIPE, &mySigAction, NULL);
-            }
-            sigaction(SIGALRM, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGALRM, &mySigAction, NULL);
-            }
-            sigaction(SIGXCPU, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGXCPU, &mySigAction, NULL);
-            }
-            sigaction(SIGXFSZ, NULL, &prevSigAction);
-            if (prevSigAction.sa_handler != SIG_IGN)
-            {
-                sigaction(SIGXFSZ, &mySigAction, NULL);
-            }
-        }
+			sigaction(SIGFPE, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGFPE, &mySigAction, NULL);
+			}
+			sigaction(SIGBUS, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGBUS, &mySigAction, NULL);
+			}
+			sigaction(SIGSEGV, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGSEGV, &mySigAction, NULL);
+			}
+			sigaction(SIGSYS, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGSYS, &mySigAction, NULL);
+			}
+			sigaction(SIGPIPE, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGPIPE, &mySigAction, NULL);
+			}
+			sigaction(SIGALRM, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGALRM, &mySigAction, NULL);
+			}
+			sigaction(SIGXCPU, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGXCPU, &mySigAction, NULL);
+			}
+			sigaction(SIGXFSZ, NULL, &prevSigAction);
+			if (prevSigAction.sa_handler != SIG_IGN)
+			{
+				sigaction(SIGXFSZ, &mySigAction, NULL);
+			}
+		}
 
-        /*    signalHandler
-         *
-         *        Set up the uncaught signals
-         */
-        void GAUncaughtExceptionHandler::signalHandler(int sig, siginfo_t *info, void *context)
-        {
-            if(state::GAState::useErrorReporting())
-            {
-                void *frames[128];
-                int i,len = backtrace(frames, 128);
-                char **symbols = backtrace_symbols(frames,len);
+		/*    signalHandler
+		 *
+		 *        Set up the uncaught signals
+		 */
+		void GAUncaughtExceptionHandler::signalHandler(int sig, siginfo_t* info, void* context)
+		{
+			if (state::GAState::useErrorReporting())
+			{
+				void* frames[128];
+				int i, len = backtrace(frames, 128);
+				char** symbols = backtrace_symbols(frames, len);
 
-                /*
-                 *    Now format into a message for sending to the user
-                 */
-                size_t totalSize = 0;
-                /*totalSize += strlen("Uncaught Signal\n");
-                totalSize += formatSize("si_signo    %d\n", info->si_signo);
-                totalSize += formatSize("si_code     %d\n", info->si_code);
-                totalSize += formatSize("si_value    %d\n", info->si_value);
-                totalSize += formatSize("si_errno    %d\n", info->si_errno);
-                totalSize += formatSize("si_addr     0x%08lX\n", info->si_addr);
-                totalSize += formatSize("si_status   %d\n", info->si_status);*/
-                totalSize += strlen("Stack trace:\n");
-                for (i = 0; i < len; ++i)
-                {
-                    totalSize += formatSize("%4d - %s\n", i, symbols[i]);
-                }
+				/*
+				 *    Now format into a message for sending to the user
+				 */
+				size_t totalSize = 0;
+				/*totalSize += strlen("Uncaught Signal\n");
+				totalSize += formatSize("si_signo    %d\n", info->si_signo);
+				totalSize += formatSize("si_code     %d\n", info->si_code);
+				totalSize += formatSize("si_value    %d\n", info->si_value);
+				totalSize += formatSize("si_errno    %d\n", info->si_errno);
+				totalSize += formatSize("si_addr     0x%08lX\n", info->si_addr);
+				totalSize += formatSize("si_status   %d\n", info->si_status);*/
+				totalSize += strlen("Stack trace:\n");
+				for (i = 0; i < len; ++i)
+				{
+					totalSize += formatSize("%4d - %s\n", i, symbols[i]);
+				}
 
-                char buffer[totalSize + 1];
-                buffer[0] = 0;
-                /*strcat(buffer, "Uncaught Signal\n");
+				char buffer[totalSize + 1];
+				buffer[0] = 0;
+				/*strcat(buffer, "Uncaught Signal\n");
 
-                formatConcat(buffer, "si_signo    %d\n", info->si_signo);
-                formatConcat(buffer, "si_code     %d\n", info->si_code);
-                formatConcat(buffer, "si_value    %d\n", info->si_value);
-                formatConcat(buffer, "si_errno    %d\n", info->si_errno);
-                formatConcat(buffer, "si_addr     0x%08lX\n", info->si_addr);
-                formatConcat(buffer, "si_status   %d\n", info->si_status);*/
-                strcat(buffer, "Stack trace:\n");
-                for (i = 0; i < len; ++i)
-                {
-                    formatConcat(buffer, "%4d - %s\n", i, symbols[i]);
-                }
+				formatConcat(buffer, "si_signo    %d\n", info->si_signo);
+				formatConcat(buffer, "si_code     %d\n", info->si_code);
+				formatConcat(buffer, "si_value    %d\n", info->si_value);
+				formatConcat(buffer, "si_errno    %d\n", info->si_errno);
+				formatConcat(buffer, "si_addr     0x%08lX\n", info->si_addr);
+				formatConcat(buffer, "si_status   %d\n", info->si_status);*/
+				strcat(buffer, "Stack trace:\n");
+				for (i = 0; i < len; ++i)
+				{
+					formatConcat(buffer, "%4d - %s\n", i, symbols[i]);
+				}
 
-                if(errorCount <= MAX_ERROR_TYPE_COUNT)
-                {
-                    errorCount = errorCount + 1;
-                    events::GAEvents::addErrorEvent(EGAErrorSeverity::Critical, buffer, {}, false, false);
-                    events::GAEvents::processEvents("error", false);
-                }
+				if (errorCount <= MAX_ERROR_TYPE_COUNT)
+				{
+					errorCount = errorCount + 1;
+					events::GAEvents::addErrorEvent(EGAErrorSeverity::Critical, buffer, {}, false, false);
+					events::GAEvents::processEvents("error", false);
+				}
 
-                struct sigaction newact;
-                newact.sa_flags = 0;
-                sigemptyset(&newact.sa_mask);
-                newact.sa_handler= SIG_DFL;
-            }
+				struct sigaction newact;
+				newact.sa_flags = 0;
+				sigemptyset(&newact.sa_mask);
+				newact.sa_handler = SIG_DFL;
+			}
 
-            if(*prevSigAction.sa_handler != NULL)
-            {
-                (*prevSigAction.sa_handler)(sig);
-            }
-        }
+			if (*prevSigAction.sa_handler != NULL)
+			{
+				(*prevSigAction.sa_handler)(sig);
+			}
+		}
 #endif
-        void GAUncaughtExceptionHandler::formatConcat(char* buffer, const char* format, ...)
-        {
-            va_list args;
-            va_start (args, format);
-            size_t len = std::vsnprintf(NULL, 0, format, args);
-            va_end (args);
-            char* formatted = new char[len + 1];
-            va_start (args, format);
-            std::vsnprintf(formatted, len + 1, format, args);
-            va_end (args);
-            strcat(buffer, formatted);
-            delete[] formatted;
-        }
+		void GAUncaughtExceptionHandler::formatConcat(char* buffer, const char* format, ...)
+		{
+			va_list args;
+			va_start(args, format);
+			size_t len = std::vsnprintf(NULL, 0, format, args);
+			va_end(args);
+			char* formatted = new char[len + 1];
+			va_start(args, format);
+			std::vsnprintf(formatted, len + 1, format, args);
+			va_end(args);
+			strcat(buffer, formatted);
+			delete[] formatted;
+		}
 
-        size_t GAUncaughtExceptionHandler::formatSize(const char* format, ...)
-        {
-            va_list args;
-            va_start (args, format);
-            size_t len = std::vsnprintf(NULL, 0, format, args);
-            va_end (args);
-            return len;
-        }
+		size_t GAUncaughtExceptionHandler::formatSize(const char* format, ...)
+		{
+			va_list args;
+			va_start(args, format);
+			size_t len = std::vsnprintf(NULL, 0, format, args);
+			va_end(args);
+			return len;
+		}
 
-        /*    terminateHandler
-         *
-         *        C++ exception terminate handler
-         */
-        void GAUncaughtExceptionHandler::terminateHandler()
-        {
-            if(state::GAState::useErrorReporting())
-            {
-                /*
-                 *    Now format into a message for sending to the user
-                 */
+		/*    terminateHandler
+		 *
+		 *        C++ exception terminate handler
+		 */
+		void GAUncaughtExceptionHandler::terminateHandler()
+		{
+			if (state::GAState::useErrorReporting())
+			{
+				/*
+				 *    Now format into a message for sending to the user
+				 */
 
-                if(errorCount <= MAX_ERROR_TYPE_COUNT)
-                {
-                    stacktrace::call_stack st;
-                    size_t totalSize = 0;
-                    totalSize += strlen("Uncaught C++ Exception\n");
-                    totalSize += strlen("Stack trace:\n");
-                    totalSize += st.to_string_size() + strlen("\n");
-                    char* buffer = new char[totalSize + 1];
+				if (errorCount <= MAX_ERROR_TYPE_COUNT)
+				{
+					stacktrace::call_stack st;
+					size_t totalSize = 0;
+					totalSize += strlen("Uncaught C++ Exception\n");
+					totalSize += strlen("Stack trace:\n");
+					totalSize += st.to_string_size() + strlen("\n");
+					char* buffer = new char[totalSize + 1];
 
-                    strcat(buffer, "Uncaught C++ Exception\n");
-                    strcat(buffer, "Stack trace:\n");
-                    st.to_string(buffer);
-                    strcat(buffer, "\n");
+					strcat(buffer, "Uncaught C++ Exception\n");
+					strcat(buffer, "Stack trace:\n");
+					st.to_string(buffer);
+					strcat(buffer, "\n");
 
-                    errorCount = errorCount + 1;
-                    events::GAEvents::addErrorEvent(EGAErrorSeverity::Critical, buffer, {}, false, false);
-                    events::GAEvents::processEvents("error", false);
-                    delete[] buffer;
-                }
-            }
+					errorCount = errorCount + 1;
+					events::GAEvents::addErrorEvent(EGAErrorSeverity::Critical, buffer, {}, false, false);
+					events::GAEvents::processEvents("error", false);
+					delete[] buffer;
+				}
+			}
 
-            if(previousTerminateHandler != NULL)
-            {
-                previousTerminateHandler();
-            }
-        }
+			if (previousTerminateHandler != NULL)
+			{
+				previousTerminateHandler();
+			}
+		}
 
-        void GAUncaughtExceptionHandler::setUncaughtExceptionHandlers()
-        {
-            if(state::GAState::useErrorReporting())
-            {
-                setupUncaughtSignals();
-                previousTerminateHandler = std::set_terminate(terminateHandler);
-            }
-        }
-    }
+		void GAUncaughtExceptionHandler::setUncaughtExceptionHandlers()
+		{
+			if (state::GAState::useErrorReporting())
+			{
+				setupUncaughtSignals();
+				previousTerminateHandler = std::set_terminate(terminateHandler);
+			}
+		}
+		inline LONG __stdcall GAUncaughtExceptionHandler::TopLevelExceptionHandler(PEXCEPTION_POINTERS pExceptionInfo)
+		{
+
+			MyStackWalker sw;
+			sw.ShowCallstack(GetCurrentThread(), pExceptionInfo->ContextRecord);
+			errorCount = errorCount + 1;
+			//push the stack line by line
+			while (sw.stack.length() > 0)
+			{
+				size_t pos = sw.stack.find("\n");
+				std::string line = sw.stack.substr(0, pos);
+				sw.stack.erase(0, pos + 1);
+				//if the line is empty, skip it
+				if (line.length() == 0)
+					continue;
+				//if line is not a part of the app, skip it
+				if (line.find("OuterSpace") == std::string::npos)
+				{
+					//strip file paths from the line
+					size_t pos = line.find_last_of("\\");
+					if (pos != std::string::npos)
+					{
+						line = line.substr(pos + 1);
+					}
+					pos = line.find_last_of("/");
+					if (pos != std::string::npos)
+					{
+						line = line.substr(pos + 1);
+					}
+					events::GAEvents::addErrorEvent(EGAErrorSeverity::Critical, line.c_str(), {}, false);
+				}
+			}
+			events::GAEvents::processEvents("error", false);
+			return EXCEPTION_CONTINUE_SEARCH;
+		}
+	}
 }
 #endif

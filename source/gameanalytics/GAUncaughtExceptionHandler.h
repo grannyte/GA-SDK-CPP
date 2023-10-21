@@ -8,6 +8,9 @@
 #if !USE_UWP && !USE_TIZEN
 #include <exception>
 #include <signal.h>
+#include <StackWalker.h>
+#include <DbgHelp.h>
+#include <string>
 
 namespace gameanalytics
 {
@@ -15,9 +18,25 @@ namespace gameanalytics
     {
         class GAUncaughtExceptionHandler
         {
+            class MyStackWalker : public StackWalker
+            {
+            public:
+                MyStackWalker() : StackWalker() {}
+                std::string stack;
+            protected:
+                virtual void OnOutput(LPCSTR szText)
+                {
+                    stack += szText;
+                    stack += "\n";
+                }
+            };
         public:
             static void setUncaughtExceptionHandlers();
+
+
+            static LONG WINAPI TopLevelExceptionHandler(PEXCEPTION_POINTERS pExceptionInfo);
         private:
+
 #if defined(_WIN32)
             static void signalHandler(int sig);
             static void (*old_state_ill) (int);

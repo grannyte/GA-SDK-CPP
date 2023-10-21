@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\crossguid\guid.cpp">
+      <Filter>source\dependencies\crossguid</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\crypto\aes.cpp">
+      <Filter>source\dependencies\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\crypto\hmac_sha2.c">
+      <Filter>source\dependencies\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\crypto\md5.cpp">
+      <Filter>source\dependencies\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\crypto\sha2.c">
+      <Filter>source\dependencies\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\miniz\miniz.c">
+      <Filter>source\dependencies\miniz</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\sqlite\sqlite3.c">
+      <Filter>source\dependencies\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\stacktrace\stacktrace\call_stack_gcc.cpp">
+      <Filter>source\dependencies\stacktrace\stacktrace</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\stacktrace\stacktrace\call_stack_msvc.cpp">
+      <Filter>source\dependencies\stacktrace\stacktrace</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\stackwalker\StackWalker.cpp">
+      <Filter>source\dependencies\stackwalker</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\zf_log\zf_log.c">
+      <Filter>source\dependencies\zf_log</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GADevice.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAEvents.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAHTTPApi.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAHTTPApiUWP.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GALogger.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAState.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAStore.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAThreading.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAThreadingTizen.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAUncaughtExceptionHandler.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAUtilities.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAValidator.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GameAnalytics.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GameAnalyticsExtern.cpp">
+      <Filter>source\gameanalytics</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\sqlite\sqlite3.h">
+      <Filter>source\dependencies\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\sqlite\sqlite3ext.h">
+      <Filter>source\dependencies\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\stacktrace\stacktrace\call_stack.hpp">
+      <Filter>source\dependencies\stacktrace\stacktrace</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\stacktrace\stacktrace\stack_exception.hpp">
+      <Filter>source\dependencies\stacktrace\stacktrace</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\dependencies\zf_log\zf_log.h">
+      <Filter>source\dependencies\zf_log</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GADevice.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GADeviceOSX.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAEvents.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAHTTPApi.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GALogger.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAState.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAStore.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAThreading.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAUncaughtExceptionHandler.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAUtilities.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GAValidator.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GameAnalytics.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\source\gameanalytics\GameAnalyticsExtern.h">
+      <Filter>source\gameanalytics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Users\David\Documents\Visual Studio 2010\Projects\Outerspacegit\GA-SDK-CPP\build\cmake\gameanalytics\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{89A38A27-6DF8-3D9B-A29C-3835821F258F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies">
+      <UniqueIdentifier>{08FA3738-F1B7-3032-A966-57801862722F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies\crossguid">
+      <UniqueIdentifier>{F1AC7D0F-6916-3AB2-9EE3-3AA11D66D75A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies\crypto">
+      <UniqueIdentifier>{7DD09C31-4600-3BB1-AF43-B387EEBA3791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies\miniz">
+      <UniqueIdentifier>{41A2872E-CDBE-37E9-AFD1-8766EA0E8DBC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies\sqlite">
+      <UniqueIdentifier>{9F04E1F6-43A5-34CA-B1E8-498300EB47A2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies\stacktrace">
+      <UniqueIdentifier>{964696B2-4BEB-3C0B-B8FC-AE4BFF864A51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies\stacktrace\stacktrace">
+      <UniqueIdentifier>{97870D63-01AA-3DC0-AC5C-62054C50EECC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies\stackwalker">
+      <UniqueIdentifier>{EAD767F0-0C3B-3F6D-B17D-F9809041C949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\dependencies\zf_log">
+      <UniqueIdentifier>{F212A5AF-4D80-3D6B-88A7-EFCF4FF17F2F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\gameanalytics">
+      <UniqueIdentifier>{0186461D-9748-318E-99C1-C4A4D95ECFDA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
