@@ -206,6 +206,9 @@
       <AdditionalOptions>/fp:contract  </AdditionalOptions>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <FloatingPointModel>Precise</FloatingPointModel>
+      <StringPooling>true</StringPooling>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;USE_OPENSSL;CURL_STATICLIB;CRYPTOPP_DISABLE_ASM;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
